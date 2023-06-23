@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  react-app:
+    container_name: cocktail-manager-front
+    image: node:14
+    volumes:
+      - ".:/app"
+      - "/app/node_modules"
+    working_dir: /app
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    command: bash -c "npm install && npm start"
+    ports:
+      - 3000:3000
