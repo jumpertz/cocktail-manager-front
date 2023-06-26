@@ -14,6 +14,8 @@ import {
   PhoneIcon,
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
+import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const products = [
   {
@@ -66,14 +68,9 @@ export default function Example() {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
-            />
-          </a>
+          <Link to="/" className="-m-1.5 p-1.5">
+            <img className="h-8 w-auto" src={logo} alt="" />
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -161,7 +158,8 @@ export default function Example() {
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
+            <Link to="/login">Log in</Link>{" "}
+            <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </nav>
@@ -242,12 +240,7 @@ export default function Example() {
                 </a>
               </div>
               <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </a>
+                <Link to="/login">Login</Link>
               </div>
             </div>
           </div>
