@@ -1,5 +1,7 @@
 import { useState } from "react";
 import API from "../api";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -8,13 +10,16 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await API.post("http://localhost:5000/login", {
+      const response = await API.post("/login", {
         email: email,
         password: password,
       });
-      console.log(response);
+      console.log(response.status);
+      if (response.status === 200 || response.status === 201) {
+        toast.success("Vous êtes connecté !");
+      }
     } catch (error) {
-      console.log(error);
+      toast.error("Erreur lors de la connexion");
     }
   };
   return (

@@ -58,7 +58,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -157,10 +157,13 @@ export default function Example() {
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            <Link to="/login">Log in</Link>{" "}
-            <span aria-hidden="true">&rarr;</span>
-          </a>
+          <Link
+            to="/login"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Log in
+          </Link>{" "}
+          <span aria-hidden="true">&rarr;</span>
         </div>
       </nav>
       <Dialog
