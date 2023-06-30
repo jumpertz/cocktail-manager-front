@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,12 +16,14 @@ function Login() {
         email: email,
         password: password,
       });
-      console.log(response.status);
       if (response.status === 200 || response.status === 201) {
-        toast.success("Vous êtes connecté !");
+        const token = response.token;
+        localStorage.setItem("token", token)
+        toast("Vous êtes connecté !");
+        navigate("/admin");
       }
     } catch (error) {
-      toast.error("Erreur lors de la connexion");
+      console.log(error);
     }
   };
   return (
@@ -36,7 +40,7 @@ function Login() {
             </div>
 
             <div className="mt-8">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div>
                   <label
                     htmlFor="email"
@@ -85,7 +89,7 @@ function Login() {
 
                 <div className="mt-6">
                   <button
-                    onClick={handleSubmit}
+                    //onClick={handleSubmit}
                     className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                   >
                     Se connecter

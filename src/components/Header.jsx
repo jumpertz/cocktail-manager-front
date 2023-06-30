@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import {
   ArrowPathIcon,
@@ -16,6 +16,8 @@ import {
 } from "@heroicons/react/20/solid";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
+import API from "../api"
+import { useNavigate } from "react-router-dom";
 
 const products = [
   {
@@ -59,7 +61,42 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function fetchCurrentUser() {
+      const token = localStorage?.getItem("token");
+      if (token) {
+        try {
+          const response = await API.get("/me", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          if (response.status === 200) {
+            const currentUser = response.json();
+            setUser(currentUser);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+    fetchCurrentUser();
+  }, []);
+
+  function isLoggedIn() {
+    return !!user;
+  }
+
+  // fonction pour gérer la déconnexion
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+    navigate("/login")
+  };
 
   return (
     <header className="bg-white">
@@ -157,13 +194,19 @@ export default function Header() {
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            to="/login"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Log in
-          </Link>{" "}
-          <span aria-hidden="true">&rarr;</span>
+        {isLoggedIn() ? (
+          <span className="text-sm font semibold leading-6 text-gray-900">
+            Bienvenue {user.status}
+          </span>
+        ) : (
+            <Link
+              to="/login"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >Log in
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
+          
         </div>
       </nav>
       <Dialog
