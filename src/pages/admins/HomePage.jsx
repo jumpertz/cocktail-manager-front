@@ -25,7 +25,7 @@ function HomePage() {
               <span className="text-sm text-gray-700">Gestion des cocktails</span>
             </div>
           </Link>
-          <Link to="/users">
+          <Link to="/admin/users">
             <div className="w-full max-w-xs overflow-hidden bg-white rounded-3xl shadow-lg">
               <img
                 className="object-cover w-full h56 max-h-44"
