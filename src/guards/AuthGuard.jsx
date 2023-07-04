@@ -17,7 +17,7 @@ function AuthGuard({ children }) {
     if (!isAuthenticated()) {
       navigate('/login');
     } else {
-      API.get("/me", {
+      API.get("/auth/me", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

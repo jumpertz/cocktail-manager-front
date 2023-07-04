@@ -11,7 +11,7 @@ const API = axios.create({
 API.interceptors.request.use(
   function (config) {
     // Insérer le token d'authentification dans l'en-tête de chaque requête
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -30,12 +30,20 @@ API.interceptors.response.use(
   },
   function (error) {
     // Faire quelque chose avec les erreurs de requête
-    if (error.response.status === 401) {
-      console.log(
-        "Erreur d'authentification. Veuillez vous connecter à nouveau."
-      );
-      // Vous pourriez vouloir faire une redirection vers la page de connexion ici
+    if (error.response) {
+      if (error.response.status === 401) {
+        console.log(
+          "Erreur d'authentification. Veuillez vous connecter à nouveau."
+        );
+        // Vous pourriez vouloir faire une redirection vers la page de connexion ici
+      }
+    } else if (error.request) {
+      console.log('No response was received', error.request);
+    } else {
+      // Quelque chose s'est mal passé lors de la configuration de la requête
+      console.log('Error', error.message);
     }
+
     return Promise.reject(error);
   }
 );
