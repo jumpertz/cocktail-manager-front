@@ -1,0 +1,4 @@
+apiVersion: v2
+name: cocktail-manager-front
+description: A Helm chart for the front microservice
+version: 1.0.0
