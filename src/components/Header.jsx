@@ -16,7 +16,7 @@ export default function Header() {
 
   useEffect(() => {
     if (token) {
-      API.get("/me", {
+      API.get("/auth/me", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -24,7 +24,7 @@ export default function Header() {
         setUser(response)
       }).catch((error) => console.error(error))
     }
-  }, []);
+  }, [token]);
 
   // fonction pour gérer la déconnexion
   const handleLogout = () => {

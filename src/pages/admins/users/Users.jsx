@@ -98,7 +98,7 @@ const [users, setUsers] = useState([]);
                                         <div className="flex items-center gap-x-2">
                                             <img className="object-cover w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt=""></img>
                                             <div>
-                                                <h2 className="font-medium text-gray-800">Nom de l`utilisateur{user.firstName}</h2>
+                                                <h2 className="font-medium text-gray-800">{user.firstName}</h2>
                                                 <p className="text-sm font-normal text-gray-600">@{user.firstName}{user.lastName}</p>
                                             </div>
                                         </div>

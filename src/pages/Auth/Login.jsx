@@ -12,7 +12,7 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await API.post("/login", {
+      const response = await API.post("/auth/login", {
         email: email,
         password: password,
       });
