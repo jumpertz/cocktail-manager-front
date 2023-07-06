@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import API from "../../../api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import EditUser from "./EditUser";
 
 function Users() {
 const [users, setUsers] = useState([]);
+const navigate = useNavigate();
 
   const getUSers = async () => {
     try {
@@ -19,16 +22,12 @@ const [users, setUsers] = useState([]);
     }
   };
 
-  const addUser = async () => {
-    try {
-      const response = await API.post('/users', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
-      });
+  const addUser =  () => {
+    navigate("/admin/user/add");
+  }
 
-      setUsers(response)
-    } catch (error) {
-      console.log('Il y a un problème avec la récupération des utilisateurs' + error);
-    }
+  const editUser = () => {
+    navigate("/admin/user/edit");
   }
 
   useEffect(() => {
@@ -41,7 +40,7 @@ const [users, setUsers] = useState([]);
         <h2 className="text-lg font-medium text-gray-800">Utilisateurs</h2>
 
         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full">{users.length} utilisateurs</span>
-        <button className ="absolute right-0 static px-5 py-1 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-500 focus:outlin-none focus:ring focus:ring-green-300 focus:ring-opacity-80">+ Ajouter</button>
+        <button onClick={addUser} className="absolute right-0 static px-5 py-1 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-500 focus:outlin-none focus:ring focus:ring-green-300 focus:ring-opacity-80">+ Ajouter</button>
     </div>
 
     <div className="flex flex-col mt-6">
@@ -128,7 +127,7 @@ const [users, setUsers] = useState([]);
                                             </svg>
                                         </button>
 
-                                        <button className="text-gray-500 transition-colors duration-200 hover:text-yellow-500 focus:outline-none">
+                                        <button onClick={editUser} className="text-gray-500 transition-colors duration-200 hover:text-yellow-500 focus:outline-none">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                             </svg>
