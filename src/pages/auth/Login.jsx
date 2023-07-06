@@ -11,10 +11,10 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-      API.post("/auth/login", {
-        email: email,
-        password: password,
-      })
+    API.post("/auth/login", {
+      email: email,
+      password: password,
+    })
       .then(response => {
         const token = response.token;
         localStorage.setItem("token", token)
