@@ -12,7 +12,7 @@ function HomePage() {
       </div>
       <div className="flex justify-center items-center h-screen">
         <div className="grid grid-cols-2 gap-10">
-          <Link to="/cocktails">
+          <Link to="/admin/cocktails">
             <div className="w-full max-w-xs max-h-xs overflow-hidden bg-white rounded-3xl shadow-lg">
               <img
                 className="object-cover w-full h52 max-h-44"

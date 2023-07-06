@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
-import API from "../../../api"
-import { Link } from "react-router-dom";
+import API from "../../api"
 
-function AdminCocktails() {
+function Cocktails() {
 
     const [cocktails, setCocktails] = useState([])
 
@@ -31,7 +30,7 @@ function AdminCocktails() {
                 const cocktail = row.cocktail
                 const ingredients = row.ingredients
                 return (
-                    <div key={idx} className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg ">
+                    <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg ">
                         <img className="object-cover object-center w-full h-56" src="https://static.750g.com/images/1200-675/b520523117d647dab6b842a36f4cc7f5/mojito-le-vrai.jpg" alt="avatar"></img>
 
                         <div className="px-6 py-4">
@@ -61,7 +60,6 @@ function AdminCocktails() {
                             <p>Normal : {cocktail.price.toFixed(2)} €</p>
                             <p>Happy Hour : {cocktail.HHPrice.toFixed(2)} €</p>
                         </div>
-                        <Link to={`/admin/cocktails/${cocktail.id}`} className="px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600">Modifier</Link>
                     </div>
                 )
             })}
@@ -70,4 +68,4 @@ function AdminCocktails() {
 
 }
 
-export default AdminCocktails;
+export default Cocktails;

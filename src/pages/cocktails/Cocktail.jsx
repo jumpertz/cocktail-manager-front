@@ -15,7 +15,12 @@ function Cocktail() {
         const fetchCocktail = async () => {
             try {
                 const response = await API.get(`/cocktails/${id}/ingredients`)
-                setCocktail(response.data)
+                    .then(response => {
+                        setCocktail(response)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
             } catch (error) {
                 console.log(error)
             }
