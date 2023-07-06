@@ -11,20 +11,20 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await API.post("/auth/login", {
+      API.post("/auth/login", {
         email: email,
         password: password,
-      });
-      if (response.status === 200 || response.status === 201) {
+      })
+      .then(response => {
         const token = response.token;
         localStorage.setItem("token", token)
-        toast("Vous êtes connecté !");
-        navigate("/admin");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+        toast("Vous êtes connecté!");
+        navigate("/admin")
+      })
+      .catch(error => {
+        console.log(error);
+        toast.error("Un problème est survenu !")
+      });
   };
   return (
     <div className="bg-white white:bg-gray-900">
