@@ -145,62 +145,69 @@ const Cocktail = ({ cocktailId }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Cocktail Name:
-                <input type="text" name="name" value={cocktail.name} onChange={handleCocktailChange} />
-            </label>
+        <>
 
-            {cocktail.steps.map((step, sidx) => (
-                <div key={sidx}>
-                    <button type="button" onClick={() => removeStep(sidx)}>Remove Step</button>
+            <div className="flex flex-col gap-3">
+                <h1 className="text-2xl font-bold mb-5">Nouveau cocktail</h1>
+
+                <form onSubmit={handleSubmit} className="flex flex-col">
                     <label>
-                        Step Position:
-                        <input type="number" name="position" value={step.position} onChange={(e) => handleStepChange(e, sidx)} />
-                    </label>
-                    <label>
-                        Step Description:
-                        <input type="text" name="description" value={step.description} onChange={(e) => handleStepChange(e, sidx)} />
+                        Cocktail Name:
+                        <input type="text" name="name" value={cocktail.name} onChange={handleCocktailChange} />
                     </label>
 
-                    {step.cocktailStepIngredients.map((cocktailStepIngredient, iidx) => (
-                        <div key={iidx} className='flex flex-col items-start'>
-                            <button type="button" onClick={() => removeIngredient(iidx)}>Remove Ingredient</button>
+                    {cocktail.steps.map((step, sidx) => (
+                        <div key={sidx}>
+                            <button type="button" onClick={() => removeStep(sidx)}>Remove Step</button>
                             <label>
-                                Position:
-                                <input type="number" name="position" value={cocktailStepIngredient.position} onChange={(e) => handleIngredientChange(e, sidx, iidx)} />
+                                Step Position:
+                                <input type="number" name="position" value={step.position} onChange={(e) => handleStepChange(e, sidx)} />
                             </label>
                             <label>
-                                Description:
-                                <input type="text" name="description" value={cocktailStepIngredient.description} onChange={(e) => handleIngredientChange(e, sidx, iidx)} />
+                                Step Description:
+                                <input type="text" name="description" value={step.description} onChange={(e) => handleStepChange(e, sidx)} />
                             </label>
-                            <label>
-                                Ingredient:
-                                <select name="ingredient" value={cocktailStepIngredient.ingredient.id} onChange={(e) => handleIngredientChange(e, sidx, iidx)}>
-                                    <option value="">Select an ingredient</option>
-                                    {ingredients.map((ingredient) => (
-                                        <option key={ingredient.id} value={ingredient.id}>{ingredient.name}</option>
-                                    ))}
-                                </select>
 
-                            </label>
-                            <label>
-                                Quantité:
-                                <input type="number" name="quantity" value={cocktailStepIngredient.quantity} onChange={(e) => handleIngredientChange(e, sidx, iidx)} />
-                                {cocktailStepIngredient.ingredient.id && (
-                                    <span>
-                                        {ingredients.find(ingredient => ingredient.id === cocktailStepIngredient.ingredient.id)?.unit ?? ''}
-                                    </span>
-                                )}
-                            </label>
+                            {step.cocktailStepIngredients.map((cocktailStepIngredient, iidx) => (
+                                <div key={iidx} className='flex flex-col items-start'>
+                                    <button type="button" onClick={() => removeIngredient(iidx)}>Remove Ingredient</button>
+                                    <label>
+                                        Position:
+                                        <input type="number" name="position" value={cocktailStepIngredient.position} onChange={(e) => handleIngredientChange(e, sidx, iidx)} />
+                                    </label>
+                                    <label>
+                                        Description:
+                                        <input type="text" name="description" value={cocktailStepIngredient.description} onChange={(e) => handleIngredientChange(e, sidx, iidx)} />
+                                    </label>
+                                    <label>
+                                        Ingredient:
+                                        <select name="ingredient" value={cocktailStepIngredient.ingredient.id} onChange={(e) => handleIngredientChange(e, sidx, iidx)}>
+                                            <option value="">Select an ingredient</option>
+                                            {ingredients.map((ingredient) => (
+                                                <option key={ingredient.id} value={ingredient.id}>{ingredient.name}</option>
+                                            ))}
+                                        </select>
+
+                                    </label>
+                                    <label>
+                                        Quantité:
+                                        <input type="number" name="quantity" value={cocktailStepIngredient.quantity} onChange={(e) => handleIngredientChange(e, sidx, iidx)} />
+                                        {cocktailStepIngredient.ingredient.id && (
+                                            <span>
+                                                {ingredients.find(ingredient => ingredient.id === cocktailStepIngredient.ingredient.id)?.unit ?? ''}
+                                            </span>
+                                        )}
+                                    </label>
+                                </div>
+                            ))}
+                            <button type="button" onClick={() => addIngredient(sidx)}>Add Ingredient</button>
                         </div>
                     ))}
-                    <button type="button" onClick={() => addIngredient(sidx)}>Add Ingredient</button>
-                </div>
-            ))}
-            <button type="button" onClick={addStep}>Add Step</button>
-            <button type="submit">Update Cocktail</button>
-        </form>
+                    <button className='w-fit' type="button" onClick={addStep}>Add Step</button>
+                    <button className='w-fit items-end' type="submit">Update Cocktail</button>
+                </form>
+            </div>
+        </>
     );
 }
 

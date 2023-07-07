@@ -13,7 +13,6 @@ function App() {
       <ToastContainer />
       <Header />
       <AppRoutes />
-      <Footer />
       <Analytics />
     </BrowserRouter>
   );

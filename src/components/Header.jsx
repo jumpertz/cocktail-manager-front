@@ -46,30 +46,44 @@ export default function Header() {
           </Link>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Features
+          <a
+            href="/admin/cocktails"
+            className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+          >
+            Cocktails
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
+          <a
+            href="/admin/stocks"
+            className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+          >
+            Stock
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Company
+          <a
+            href="/admin/ingredients"
+            className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+          >
+            Ingrédients
+          </a>
+          <a
+            href="/admin/users"
+            className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+          >
+            Users
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-        {user ? (  
-          <span className="text-sm font semibold leading-6 text-gray-900">
-            Bienvenue {user.firstName} {user.lastName}
-            <button
-              type="button"
-              onClick={handleLogout}
-              className="ml-6 text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700"
-            >
-              Se deconnecter
-            </button>
-          </span>
-        ) : (
+          {user ? (
+            <span className="text-sm font semibold leading-6 text-gray-900">
+              Bienvenue {user.firstName} {user.lastName}
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="ml-6 text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700"
+              >
+                Se deconnecter
+              </button>
+            </span>
+          ) : (
             <Link
               to="/login"
               className="text-sm font-semibold leading-6 text-gray-900"
@@ -77,7 +91,7 @@ export default function Header() {
               <span aria-hidden="true">&rarr;</span>
             </Link>
           )}
-          
+
         </div>
       </nav>
       <Dialog
@@ -111,22 +125,22 @@ export default function Header() {
               <div className="space-y-2 py-6">
 
                 <a
-                  href="#"
+                  href="/admin/cocktails"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Features
+                  Cocktails
                 </a>
                 <a
-                  href="#"
+                  href="/admin/stocks"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Marketplace
+                  Stock
                 </a>
                 <a
-                  href="#"
+                  href="/admin/users"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Company
+                  Users
                 </a>
               </div>
               <div className="py-6">

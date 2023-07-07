@@ -7,21 +7,22 @@ import Users from "./pages/admins/users/Users"
 import Cocktails from "./pages/cocktails/Cocktails";
 import AdminCocktails from "./pages/admins/cocktails/Cocktails";
 import AdminCocktail from "./pages/admins/cocktails/Cocktail";
-
+import AdminCreateCocktail from "./pages/admins/cocktails/CreateCocktail";
+import AdminIngredients from "./pages/admins/ingredients/Ingredients";
 function AppRoutes() {
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
 
-
       {/* IS AUTHENTICATED && IS ADMIN */}
       <Route path="/admin" element={<AuthGuard><HomePage /></AuthGuard>} />
       <Route path="/admin/cocktails" element={<AuthGuard><AdminCocktails /></AuthGuard>} />
+      <Route path="/admin/cocktails/create" element={<AuthGuard><AdminCreateCocktail /></AuthGuard>} />
       <Route path="/admin/cocktails/:cocktailId" element={<AuthGuard><AdminCocktail /></AuthGuard>} />
       <Route path="/admin/stocks" element={<AuthGuard><HomePage /></AuthGuard>} />
       <Route path="/admin/users" element={<AuthGuard><Users /></AuthGuard>} />
-      <Route path="/admin/ingredients" element={<AuthGuard><HomePage /></AuthGuard>} />
+      <Route path="/admin/ingredients" element={<AuthGuard><AdminIngredients /></AuthGuard>} />
 
       {/* ELSE CAN ACCESS LIST OF COCKTAILS */}
       <Route path="/cocktails" element={<Cocktails />} />

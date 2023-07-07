@@ -25,46 +25,65 @@ function AdminCocktails() {
     }, []);
 
     return (
-        <div>
-            <h1>Cocktails</h1>
-            {cocktails.map((row, idx) => {
-                const cocktail = row.cocktail
-                const ingredients = row.ingredients
-                return (
-                    <div key={idx} className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg ">
-                        <img className="object-cover object-center w-full h-56" src="https://static.750g.com/images/1200-675/b520523117d647dab6b842a36f4cc7f5/mojito-le-vrai.jpg" alt="avatar"></img>
+        <div className="flex flex-col gap-3">
+            <h1 className="text-2xl font-bold mb-5">Cocktails</h1>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+                {cocktails.map((row, idx) => {
+                    const cocktail = row.cocktail
+                    const ingredients = row.ingredients
+                    return (
+                        <Link to={`/admin/cocktails/${cocktail.id}`} className=" duration-100">
 
-                        <div className="px-6 py-4">
-                            <h1 className="text-xl font-semibold text-gray-800">{cocktail.name}</h1>
+                            <div key={idx} className="bg-white rounded-xl drop-shadow-[0_5px_35px_rgba(0,0,0,0.15)] flex flex-col overflow-visible relative">
+                                <img className="object-cover object-center h-36 rounded-xl" src={cocktail.image} alt="avatar"></img>
 
-                            <p className="py-2 text-gray-700">{ingredients.map(ingredient => ingredient.name).join(', ')}</p>
+                                <div className="px-6 py-4 flex flex-col">
+                                    <h1 className="text-2xl text-left font-bold text-gray-800">{cocktail.name}</h1>
+                                    <p className="py-2 text-sm text-left text-gray-500">{cocktail.description ?? 'Lorem ipsum'}</p>
 
-                            <div className="flex items-center mt-4 text-gray-700">
-                                <svg aria-label="suitcase icon" className="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14 11H10V13H14V11Z" /><path fill-rule="evenodd" clip-rule="evenodd" d="M7 5V4C7 2.89545 7.89539 2 9 2H15C16.1046 2 17 2.89545 17 4V5H20C21.6569 5 23 6.34314 23 8V18C23 19.6569 21.6569 21 20 21H4C2.34314 21 1 19.6569 1 18V8C1 6.34314 2.34314 5 4 5H7ZM9 4H15V5H9V4ZM4 7C3.44775 7 3 7.44769 3 8V14H21V8C21 7.44769 20.5522 7 20 7H4ZM3 18V16H21V18C21 18.5523 20.5522 19 20 19H4C3.44775 19 3 18.5523 3 18Z" />
-                                </svg>
+                                    <div className="flex self-center mt-2 text-gray-700">
+                                        <p className="flex items-center text-md">
+                                            <span className="bg-gray-100 font-bold pe-3 py-3 min-h-fit rounded-full whitespace-nowrap">
+                                                <span className=" bg-amber-300 text-amber-700 rounded-full px-3 py-2 ms-2 me-2">
+                                                    {cocktail.HHPrice.toFixed(2)} €
+                                                </span>
+                                                {cocktail.price.toFixed(2)} €
+                                            </span>
+                                        </p>
+                                    </div>
 
-                                <h1 className="px-2 text-sm">Allérgène</h1>
-                                {ingredients.filter(i => i.hasAllergen).length > 0 ? () => {
-                                    return (<p>{hasAllergen(ingredients).map(ingredient => ingredient.name).join(', ')}</p>)
-                                } : () => {
-                                    return (<p>Pas d'allergène</p>)
-                                }}
+                                    <div className="py-4 self-start flex-col flex items-start">
+                                        <h2 className="text-sm font-bold text-gray-600">Ingrédients</h2>
+                                        <p className="text-gray-500 text-xs">{ingredients.map(ingredient => ingredient.name).join(', ')} et beaucoup d'amour</p>
+                                    </div>
+
+                                    <div className="flex items-center text-gray-700">
+                                        <p className="text-sm font-semibold flex gap-1">
+                                            {ingredients.filter(i => i.allergen).length > 0 ?
+                                                (
+                                                    <><span>⚠️</span> {ingredients.filter(i => i.allergen).map(ingredient => ingredient.name).join(', ')}</>
+                                                ) :
+                                                (
+                                                    <><span>✅</span> Pas d'allergène</>
+                                                )
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="absolute top-0 right-0 bottom-0 left-0 bg-gray-600/40 duration-100 hover:backdrop-blur-lg hover:opacity-100 opacity-0 rounded-xl flex flex-col gap-6 items-center justify-center">
+                                    <h1 className="text-4xl text-white font-bold">{cocktail.name}</h1>
+                                    <h1 className="text-3xl">✏️</h1>
+                                </div>
                             </div>
-                            <div className="flex items-center mt-4 text-gray-700">
-                                <svg aria-label="suitcase icon" className="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14 11H10V13H14V11Z" /><path fill-rule="evenodd" clip-rule="evenodd" d="M7 5V4C7 2.89545 7.89539 2 9 2H15C16.1046 2 17 2.89545 17 4V5H20C21.6569 5 23 6.34314 23 8V18C23 19.6569 21.6569 21 20 21H4C2.34314 21 1 19.6569 1 18V8C1 6.34314 2.34314 5 4 5H7ZM9 4H15V5H9V4ZM4 7C3.44775 7 3 7.44769 3 8V14H21V8C21 7.44769 20.5522 7 20 7H4ZM3 18V16H21V18C21 18.5523 20.5522 19 20 19H4C3.44775 19 3 18.5523 3 18Z" />
-                                </svg>
+                        </Link>
+                    )
+                })}
+                <Link to="/admin/cocktails/create" className="px-4 py-2 self-end rounded-xl font-semibold bg-gray-100 hover:bg-gray-200 duration-100 flex flex-col justify-center items-center h-full  text-gray-300 hover:text-gray-400">
+                    <span className="text-5xl">+</span>
+                    <p className="text-xl">Ajouter un cocktail</p>
+                </Link>
 
-                                <h1 className="px-2 text-sm">Prix</h1>
-                            </div>
-                            <p>Normal : {cocktail.price.toFixed(2)} €</p>
-                            <p>Happy Hour : {cocktail.HHPrice.toFixed(2)} €</p>
-                        </div>
-                        <Link to={`/admin/cocktails/${cocktail.id}`} className="px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600">Modifier</Link>
-                    </div>
-                )
-            })}
+            </div>
         </div >
     )
 
