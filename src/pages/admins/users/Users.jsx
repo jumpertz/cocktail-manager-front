@@ -39,7 +39,7 @@ function Users() {
                 <h2 className="text-lg font-medium text-gray-800">Utilisateurs</h2>
 
                 <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full">{users.length} utilisateurs</span>
-                <button onClick={addUser} className="absolute right-0 static px-5 py-1 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-500 focus:outlin-none focus:ring focus:ring-green-300 focus:ring-opacity-80">+ Ajouter</button>
+                <Link to='/admin/users/add' className="absolute right-0 static px-5 py-1 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-500 focus:outlin-none focus:ring focus:ring-green-300 focus:ring-opacity-80">+ Ajouter</Link>
             </div>
 
             <div className="flex flex-col mt-6">
@@ -113,9 +113,7 @@ function Users() {
                                                 <td className="px-4 py-4 text-sm text-gray-500">{user.email}</td>
                                                 <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                     <div className="flex items-center gap-x-2">
-                                                        <p className="px-3 py-1 text-xs text-indigo-500 rounded-full">Design</p>
-                                                        <p className="px-3 py-1 text-xs text-blue-500 rounded-full">Product</p>
-                                                        <p className="px-3 py-1 text-xs text-pink-500 rounded-full">Marketing</p>
+                                                        <p className="px-3 py-1 text-xs text-indigo-500 rounded-full">Gérant</p>
                                                     </div>
                                                 </td>
                                                 <td className="px-4 py-4 text-sm whitespace-nowrap">
