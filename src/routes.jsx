@@ -27,8 +27,8 @@ function AppRoutes() {
       <Route path="/admin/users" element={<AuthGuard><Users /></AuthGuard>} />
       <Route path="/admin/ingredients" element={<AuthGuard><AdminIngredients /></AuthGuard>} />
       <Route path="/admin/ingredients" element={<AuthGuard><HomePage /></AuthGuard>} />
-      <Route path="/admin/user/edit" element={<AuthGuard><EditUser /></AuthGuard>} />
-      <Route path="/admin/user/add" element={<AuthGuard><AddUser /></AuthGuard>} />
+      <Route path="/admin/users/:id" element={<AuthGuard><EditUser /></AuthGuard>} />
+      <Route path="/admin/users/add" element={<AuthGuard><AddUser /></AuthGuard>} />
 
 
       {/* ELSE CAN ACCESS LIST OF COCKTAILS */}

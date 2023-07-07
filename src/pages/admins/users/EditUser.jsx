@@ -1,23 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import API from "../../../api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function EditUser() {
   const navigate = useNavigate();
+  const {id} = useParams();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const getUser = async () => {
+    await API.get(`/users/${id}`,{
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+    })
+      .then((res) => {
+        setFirstName(res.data.firstName);
+        setLastName(res.data.lastName);
+        setEmail(res.data.email);
+        setPassword(res.data.password);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  useEffect(() => {
+    getUser();
+  }, [])
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    API.post("/auth/register", {
+    API.patch(`/users/${id}`, {
       firstName: firstName,
       lastName: lastName,
       email: email,
       password: password,
+    }, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
     })
       .then(() => {
         toast("L'utilisateur a bien été enregistré");
