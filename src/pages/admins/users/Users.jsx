@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import API from "../../../api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
-import EditUser from "./EditUser";
+import { Link, useNavigate } from "react-router-dom";
 
 function Users() {
     const [users, setUsers] = useState([]);
@@ -22,17 +21,17 @@ function Users() {
         }
     };
 
-    const addUser = () => {
-        navigate("/admin/user/add");
-    }
+  const addUser =  () => {
+    navigate("/admin/users/add");
+  }
 
-    const editUser = () => {
-        navigate("/admin/user/edit");
-    }
+//   const editUser = (id) => {
+//     navigate(`/admin/users/${id}`);
+//   }
 
-    useEffect(() => {
-        getUSers();
-    }, [users]);
+  useEffect(() => {
+    getUSers();
+  }, []);
 
     return (
         <section className="container px-4 mx-auto">
@@ -40,7 +39,7 @@ function Users() {
                 <h2 className="text-lg font-medium text-gray-800">Utilisateurs</h2>
 
                 <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full">{users.length} utilisateurs</span>
-                <button onClick={addUser} className="absolute right-0 static px-5 py-1 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-500 focus:outlin-none focus:ring focus:ring-green-300 focus:ring-opacity-80">+ Ajouter</button>
+                <Link to='/admin/users/add' className="absolute right-0 static px-5 py-1 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-600 rounded-lg hover:bg-green-500 focus:outlin-none focus:ring focus:ring-green-300 focus:ring-opacity-80">+ Ajouter</Link>
             </div>
 
             <div className="flex flex-col mt-6">
@@ -114,9 +113,7 @@ function Users() {
                                                 <td className="px-4 py-4 text-sm text-gray-500">{user.email}</td>
                                                 <td className="px-4 py-4 text-sm whitespace-nowrap">
                                                     <div className="flex items-center gap-x-2">
-                                                        <p className="px-3 py-1 text-xs text-indigo-500 rounded-full">Design</p>
-                                                        <p className="px-3 py-1 text-xs text-blue-500 rounded-full">Product</p>
-                                                        <p className="px-3 py-1 text-xs text-pink-500 rounded-full">Marketing</p>
+                                                        <p className="px-3 py-1 text-xs text-indigo-500 rounded-full">Gérant</p>
                                                     </div>
                                                 </td>
                                                 <td className="px-4 py-4 text-sm whitespace-nowrap">
@@ -127,25 +124,27 @@ function Users() {
                                                             </svg>
                                                         </button>
 
-                                                        <button onClick={editUser} className="text-gray-500 transition-colors duration-200 hover:text-yellow-500 focus:outline-none">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        )
-
-                                    })}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                        <Link
+                                        to={`/admin/users/${user.id}`}
+                                         className="text-gray-500 transition-colors duration-200 hover:text-yellow-500 focus:outline-none">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                                            </svg>
+                                        </Link>
+                                    </div>
+                                </td>
+                            </tr>
+                          )
+                          
+                        })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </section>
-    )
+        </div>
+    </div>
+</section>
+  )
 }
 
 export default Users;
