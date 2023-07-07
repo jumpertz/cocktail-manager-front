@@ -9,6 +9,9 @@ import AdminCocktails from "./pages/admins/cocktails/Cocktails";
 import AdminCocktail from "./pages/admins/cocktails/Cocktail";
 import AdminCreateCocktail from "./pages/admins/cocktails/CreateCocktail";
 import AdminIngredients from "./pages/admins/ingredients/Ingredients";
+import EditUser from "./pages/admins/users/EditUser";
+import AddUser from "./pages/admins/users/AddUser";
+
 function AppRoutes() {
   return (
     <Routes>
@@ -23,6 +26,10 @@ function AppRoutes() {
       <Route path="/admin/stocks" element={<AuthGuard><HomePage /></AuthGuard>} />
       <Route path="/admin/users" element={<AuthGuard><Users /></AuthGuard>} />
       <Route path="/admin/ingredients" element={<AuthGuard><AdminIngredients /></AuthGuard>} />
+      <Route path="/admin/ingredients" element={<AuthGuard><HomePage /></AuthGuard>} />
+      <Route path="/admin/user/edit" element={<AuthGuard><EditUser /></AuthGuard>} />
+      <Route path="/admin/user/add" element={<AuthGuard><AddUser /></AuthGuard>} />
+
 
       {/* ELSE CAN ACCESS LIST OF COCKTAILS */}
       <Route path="/cocktails" element={<Cocktails />} />
