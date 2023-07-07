@@ -53,22 +53,16 @@ export default function Header() {
             Cocktails
           </a>
           <a
-            href="/admin/stocks"
+            href="/admin/ingredients"
             className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
           >
             Stock
           </a>
           <a
-            href="/admin/ingredients"
-            className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-          >
-            Ingre
-          </a>
-          <a
             href="/admin/users"
             className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
           >
-            Users
+            Utilisateurs
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">

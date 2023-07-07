@@ -25,9 +25,7 @@ const CreateCocktail = () => {
                     position: 1,
                     description: '',
                     ingredient: {
-                        id: '',
-                        name: '',
-                        unit: ''
+                        id: ''
                     }
                 }]
             }]
@@ -86,7 +84,7 @@ const CreateCocktail = () => {
     }
 
     const addStep = () => {
-        setCocktail({ ...cocktail, steps: [...cocktail.steps, { position: cocktail.steps.length + 1, description: '', cocktailStepIngredients: [{ position: 1, description: '', ingredient: { id: '', name: '', unit: '' } }] }] });
+        setCocktail({ ...cocktail, steps: [...cocktail.steps, { position: cocktail.steps.length + 1, description: '', cocktailStepIngredients: [{ position: 1, description: '', ingredient: { id: '' } }] }] });
     }
 
     const removeStep = (stepIndex) => {
@@ -97,7 +95,7 @@ const CreateCocktail = () => {
     const addIngredient = (stepIndex) => {
         const updatedSteps = cocktail.steps.map((step, idx) => {
             if (idx === stepIndex) {
-                return { ...step, cocktailStepIngredients: [...step.cocktailStepIngredients, { position: step.cocktailStepIngredients.length + 1, description: '', ingredient: { id: '', name: '', unit: '' } }] };
+                return { ...step, cocktailStepIngredients: [...step.cocktailStepIngredients, { position: step.cocktailStepIngredients.length + 1, description: '', ingredient: { id: '' } }] };
             }
             return step;
         });

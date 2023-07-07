@@ -11,6 +11,7 @@ import AdminCreateCocktail from "./pages/admins/cocktails/CreateCocktail";
 import AdminIngredients from "./pages/admins/ingredients/Ingredients";
 import EditUser from "./pages/admins/users/EditUser";
 import AddUser from "./pages/admins/users/AddUser";
+import AdminCreateIngredients from "./pages/admins/ingredients/AddIngredient";
 
 function AppRoutes() {
   return (
@@ -26,7 +27,7 @@ function AppRoutes() {
       <Route path="/admin/stocks" element={<AuthGuard><HomePage /></AuthGuard>} />
       <Route path="/admin/users" element={<AuthGuard><Users /></AuthGuard>} />
       <Route path="/admin/ingredients" element={<AuthGuard><AdminIngredients /></AuthGuard>} />
-      <Route path="/admin/ingredients" element={<AuthGuard><HomePage /></AuthGuard>} />
+      <Route path="/admin/ingredients/create" element={<AuthGuard><AdminCreateIngredients /></AuthGuard>} />
       <Route path="/admin/user/edit" element={<AuthGuard><EditUser /></AuthGuard>} />
       <Route path="/admin/user/add" element={<AuthGuard><AddUser /></AuthGuard>} />
 

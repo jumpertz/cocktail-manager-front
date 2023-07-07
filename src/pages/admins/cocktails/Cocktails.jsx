@@ -71,7 +71,7 @@ function AdminCocktails() {
                                     </div>
                                 </div>
                                 <div className="absolute top-0 right-0 bottom-0 left-0 bg-gray-600/40 duration-100 hover:backdrop-blur-lg hover:opacity-100 opacity-0 rounded-xl flex flex-col gap-6 items-center justify-center">
-                                    <h1 className="text-4xl text-white font-bold">{cocktail.name}</h1>
+                                    <h1 className="text-3xl text-white font-bold px-4">{cocktail.name}</h1>
                                     <h1 className="text-3xl">✏️</h1>
                                 </div>
                             </div>
